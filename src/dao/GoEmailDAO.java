@@ -5,32 +5,32 @@ import java.sql.PreparedStatement;
 
 import utill.DBConnector;
 
-public class GoPostDAO {
+
+public class GoEmailDAO {
 
 	/**
 	 * データベースへの接続
 	 */
 	private Connection con;
-
+	
 	/**
-	 * 郵便番号
+	 * メールアドレス
 	 */
-	private int postInt;
-
-
+	private String email;
+	
 	/**
-	 * Q3のデータベースのuserのテーブルに郵便番号を入力するメソッド
-	 * @param postInt 郵便番号
+	 * Q3のデータベースのuserのテーブルにメールアドレスを入力するメソッド
+	 * @param email メールアドレス
 	 * @return res true/false 登録が出来ればtrue、無ければfalseを返します。
 	 */
-	public boolean insertPost(int postInt){
+	public boolean insertEmail(String email){
 		boolean res = false;
 		int count = 0;
 		try {
-			con= DBConnector.getConnection("Q3");
-			String sql = "INSERT INTO user(post) values(?)";
+			con = DBConnector.getConnection("Q3");
+			String sql = "INSERT INTO user(email) values(?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, postInt);
+			ps.setString(1, email);
 			count +=ps.executeUpdate();
 			if(count>0){
 				res=true;
@@ -39,16 +39,7 @@ public class GoPostDAO {
 			res=false;
 		}
 		return res;
-	}
-
-	public int getPostInt() {
-		return postInt;
-	}
-
-
-	public void setPostInt(int postInt) {
-		this.postInt = postInt;
+			
+		} 
 	}
 	
-	
-}

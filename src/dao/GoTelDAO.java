@@ -5,50 +5,47 @@ import java.sql.PreparedStatement;
 
 import utill.DBConnector;
 
-public class GoPostDAO {
-
+public class GoTelDAO {
+	
 	/**
 	 * データベースへの接続
 	 */
 	private Connection con;
 
 	/**
-	 * 郵便番号
+	 * 電話番号
 	 */
-	private int postInt;
-
+	private int telInt;
 
 	/**
 	 * Q3のデータベースのuserのテーブルに郵便番号を入力するメソッド
-	 * @param postInt 郵便番号
+	 * @param twlInt 電話番号
 	 * @return res true/false 登録が出来ればtrue、無ければfalseを返します。
 	 */
-	public boolean insertPost(int postInt){
+	public boolean insertTel(int telInt){
 		boolean res = false;
 		int count = 0;
 		try {
-			con= DBConnector.getConnection("Q3");
-			String sql = "INSERT INTO user(post) values(?)";
+			con=DBConnector.getConnection("Q3");
+			 String sql = "INSERT INTO user(tel) values(?)";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, postInt);
+			ps.setInt(1, telInt);
 			count +=ps.executeUpdate();
 			if(count>0){
 				res=true;
 			}
 		} catch (Exception e) {
-			res=false;
+			res =false;
 		}
 		return res;
 	}
 
-	public int getPostInt() {
-		return postInt;
+	public int getTelInt() {
+		return telInt;
 	}
 
-
-	public void setPostInt(int postInt) {
-		this.postInt = postInt;
+	public void setTelInt(int telInt) {
+		this.telInt = telInt;
 	}
-	
 	
 }

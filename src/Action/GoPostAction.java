@@ -2,6 +2,8 @@ package Action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.GoPostDAO;
+
 public class GoPostAction extends ActionSupport{
 
 	/**
@@ -24,6 +26,11 @@ public class GoPostAction extends ActionSupport{
 	 * @return SUCCESS 常にSUCCESSを返します。
 	 */
 	public String execute(){
+		String res =  "error";
+		if(post==null){
+			res="requiredError";
+			return res;
+		}
 		if(post.length()!=7){
 			return ERROR;
 		}
@@ -34,10 +41,11 @@ public class GoPostAction extends ActionSupport{
 		}
 		
 		//郵便番号をQ3データベースに登録できたかどうかを確認。
-		if(){
-			
+		GoPostDAO dao = new GoPostDAO();
+		if(!dao.insertPost(postInt)){
+			res="dupulicatedError";
+			return res;
 		}
-		
 		return SUCCESS; 
 	}
 
