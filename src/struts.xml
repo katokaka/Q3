@@ -16,6 +16,15 @@
 			<result name="dupulicatedError">dupulicated_error.jsp</result>
 
 		</action>
+		
+		<!--電話番号画面への遷移 -->
+		<action name="GoTelAction" class=" Action.GoTelAction"
+			method="execute">
+			<result name="success">tel.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="requiredError">required_error.jsp</result>
+			<result name="dupulicatedError">dupulicated_error.jsp</result>
+		</action>
 
 		<!--メールアドレス画面への遷移 -->
 		<action name="GoEmailAction" class=" Action.GoEmailAction"
